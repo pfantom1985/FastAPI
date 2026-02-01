@@ -131,24 +131,13 @@ Swagger UI со всеми 4 эндпоинтами
 ![Swagger endpoints](screenshots/01-swagger-all-endpoints.jpg)
 
 Вызовы эндпоинтов с ответами через Postman  
-![Postman calls](screenshots/02-0-postman-calls.jpg)
 ![Postman calls](screenshots/02-1-postman-calls.jpg)
 ![Postman calls](screenshots/02-2-postman-calls.jpg)
 ![Postman calls](screenshots/02-3-postman-calls.jpg)
 ![Postman calls](screenshots/02-4-postman-calls.jpg)
-![Postman calls](screenshots/02-5-postman-calls.jpg)
-![Postman calls](screenshots/02-6-postman-calls.jpg)
-![Postman calls](screenshots/02-7-postman-calls.jpg)
-![Postman calls](screenshots/02-8-postman-calls.jpg)
-![Postman calls](screenshots/02-9-postman-calls.jpg)
 
 Успешный POST /echo из браузера (Swagger UI)  
-![POST /echo success](screenshots/03-1-swagger-post-echo-success.jpg)
-![POST /echo success](screenshots/03-2-swagger-post-echo-success.jpg)
-![POST /echo success](screenshots/03-3-swagger-post-echo-success.jpg)
+![POST /echo success](screenshots/03-postman-post-echo-success.jpg)
 
 Ошибка 401 на /secret/wrong  
-![401 on /secret/wrong](screenshots/04-1-secret-wrong-401.jpg)
-![401 on /secret/wrong](screenshots/04-2-secret-wrong-401.jpg)
-![401 on /secret/wrong](screenshots/04-3-secret-wrong-401.jpg)
-![401 on /secret/wrong](screenshots/04-4-secret-wrong-401.jpg)
+![401 on /secret/wrong](screenshots/04-secret-wrong-401.jpg)
