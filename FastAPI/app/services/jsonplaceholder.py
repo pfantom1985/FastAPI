@@ -14,7 +14,6 @@ class JsonPlaceholderService:
         self._client = client
         self._base_url = settings.JSONPLACEHOLDER_BASE_URL.rstrip("/")
 
-    # ---- Public API (возвращаем уже нормализованные модели) ----
     def list_posts(self, *, limit: int, start: int) -> list[Post]:
         url = f"{self._base_url}/posts"
         resp = self._safe_get(url, params={"_limit": limit, "_start": start})
@@ -48,7 +47,6 @@ class JsonPlaceholderService:
         q_lower = q.lower()
         return [p for p in posts if q_lower in p.title.lower()]
 
-    # ---- Transport / errors mapping ----
     def _safe_get(
         self,
         url: str,
@@ -99,9 +97,7 @@ class JsonPlaceholderService:
                 },
             ) from exc
 
-    # ---- Pydantic validation (UPSTREAM_BAD_RESPONSE) ----
     def _upstream_validation_failed(self, *, expected: str, exc: ValidationError) -> HTTPException:
-        # Не отдаём “внутренности” слишком подробно; errors() достаточно для дебага формата
         return HTTPException(
             status_code=502,
             detail={

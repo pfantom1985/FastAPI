@@ -6,5 +6,4 @@ class Settings(BaseSettings):
     HTTP_RETRIES: int = 3
     HTTP_BACKOFF: float = 0.3
 
-    # Опционально: чтобы можно было использовать .env
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")

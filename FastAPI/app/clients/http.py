@@ -45,7 +45,6 @@ class HttpClient:
     ) -> requests.Response:
         last_exc: Exception | None = None
 
-        # retries=3 означает "всего 3 попытки"
         attempts = max(1, int(self._config.retries))
 
         for attempt in range(1, attempts + 1):
@@ -73,7 +72,6 @@ class HttpClient:
                     attempts,
                 )
 
-                # 5xx -> ретраим (до исчерпания попыток)
                 if 500 <= resp.status_code <= 599:
                     last_exc = UpstreamHTTPError(resp.status_code, response_text=resp.text)
                     if attempt < attempts:
@@ -81,7 +79,6 @@ class HttpClient:
                         continue
                     raise last_exc
 
-                # 4xx не ретраим, возвращаем как есть (решит сервисный слой)
                 return resp
 
             except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as exc:
@@ -100,12 +97,9 @@ class HttpClient:
                     self._sleep_backoff(attempt)
                     continue
                 raise UpstreamTimeoutError(str(exc)) from exc
-
-        # теоретически сюда не попадём
         raise UpstreamTimeoutError(str(last_exc) if last_exc else "Unknown upstream error")
 
     def _sleep_backoff(self, attempt: int) -> None:
-        # Простой линейный backoff: backoff * attempt
         delay = float(self._config.backoff) * attempt
         if delay > 0:
             time.sleep(delay)
