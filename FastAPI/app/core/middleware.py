@@ -1,0 +1,11 @@
+import uuid
+from fastapi import Request
+
+REQUEST_ID_HEADER = "X-Request-Id"
+
+async def request_id_middleware(request: Request, call_next):
+    request_id = str(uuid.uuid4())
+    request.state.request_id = request_id
+    response = await call_next(request)
+    response.headers[REQUEST_ID_HEADER] = request_id
+    return response
